@@ -1,0 +1,8 @@
+# You can have environment specific config files. Environment specific config entries take precedence over common config entries.
+# Example production environment config file:
+
+# size: 2
+# computed: <%= 1 + 2 + 3 %>
+# section:
+#   size: 3
+#   servers: [ {name: production1.com}, {name: production2.com} ]

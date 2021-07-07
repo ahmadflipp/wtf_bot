@@ -1,0 +1,5 @@
+{
+  "command": ["bundle", "exec", "rails", "db:migrate"],
+  "failureAction": "ROLLBACK",
+  "slackChannel": "my-team-channel"
+}

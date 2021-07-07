@@ -1,0 +1,9 @@
+# If you want to have local settings, specific to your machine or development environment, you can use the following files, which are automatically .gitignore:
+#  Rails.root.join("config", "settings.local.yml").to_s,
+#  Rails.root.join("config", "settings", "#{Rails.env}.local.yml").to_s,
+#  Rails.root.join("config", "environments", "#{Rails.env}.local.yml").to_s
+# NOTE: The file settings.local.yml will not be loaded in tests to prevent local configuration from causing flaky or non-deterministic tests.
+# Environment-specific files (e.g. settings/test.local.yml) will still be loaded to allow test-specific credentials.
+
+# size: 1
+# server: flipp.com

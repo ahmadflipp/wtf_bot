@@ -1,0 +1,30 @@
+#  After installing the gem, Settings object will become available globally and by default will be compiled from the files listed below.
+#  Settings defined in files that are lower in the list override settings higher.
+
+#    config/settings.yml
+#    config/settings/#{environment}.yml
+#    config/environments/#{environment}.yml
+
+#    config/settings.local.yml
+#    config/settings/#{environment}.local.yml
+#    config/environments/#{environment}.local.yml
+
+#  Entries can be accessed via object member notation:
+
+#    Settings.my_config_entry
+
+#  Nested entries are supported:
+
+#    Settings.my_section.some_entry
+#    Alternatively, you can also use the [] operator if you don't know which exact setting you need to access ahead of time.
+
+#    All the following are equivalent to Settings.my_section.some_entry
+
+#    Settings.my_section[:some_entry]
+#    Settings.my_section['some_entry']
+#    Settings[:my_section][:some_entry]
+
+# Example common config file:
+
+# size: 1
+# server: flipp.com

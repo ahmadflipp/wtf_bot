@@ -1,0 +1,40 @@
+version: '3.6'
+services:
+  db:
+    hostname: db
+    image: circleci/mysql:5.7
+    restart: always
+    expose:
+        - "3306"
+    volumes:
+        - dbdata:/var/lib/mysql
+
+  db_migration:
+    image: wtf_bot.latest
+    build: .
+    environment:
+      - DB_HOST=db
+      - RAILS_ENV=development
+    command: rake db:create db:migrate db:seed db:test:prepare
+    entrypoint: []
+    depends_on:
+      - db
+
+  web:
+    image: wtf_bot.latest
+    build: .
+    ports:
+      - "3000:3000"
+    restart: always
+    entrypoint:
+      - bundle
+      - exec
+    command: "bundle exec rails server -b 0.0.0.0 -p 3000"
+    environment:
+      - RAILS_ENV=development
+      - DB_HOST=db
+    volumes:
+      - ./app:/var/app/app
+
+volumes:
+  dbdata:

@@ -1,0 +1,33 @@
+default: &default
+  adapter: mysql2
+  encoding: utf8mb4
+  host: <%= ENV['DB_HOST'] || '127.0.0.1' %>
+  port: 3306
+  # For details on connection pooling, see Rails configuration guide
+  # http://guides.rubyonrails.org/configuring.html#database-pooling
+  pool: 10
+  reconnect: true
+
+development: &development
+  <<: *default
+  database: wtf_bot_development
+  username: <%= ENV['WTF_BOT_DB_USERNAME'] || 'root' %>
+  password: <%= ENV['WTF_BOT_DB_PASSWORD'] %>
+
+test:
+  <<: *development
+  database: wtf_bot_test
+
+staging:
+  <<: *default
+  host: <%= ENV['DB_HOST'] %>
+  database: wtf_bot_staging
+  username: wtf_bot
+  password: <%= ENV['DB_PASSWORD'] %>
+
+production:
+  <<: *default
+  host: <%= ENV['DB_HOST'] %>
+  database: wtf_bot_production
+  username: wtf_bot
+  password: <%= ENV['DB_PASSWORD'] %>

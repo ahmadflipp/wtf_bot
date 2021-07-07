@@ -1,0 +1,42 @@
+app_config:
+  # Name of the app, with underscores.
+  app_name: wtf_bot
+  # Real text name of the app, in human language.
+  app_title: Wtf Bot
+  # List of services. Add more to enable a Single Repo Multi Service setup.
+  # Possible values for service names are:
+  #   :default - whatever the generator is set up to generate via other options, e.g. an app or Kafka consumer.
+  #   :kafka - a Deimos Kafka consumer.
+  #   :app - a Rails UI or API app.
+  #   :custom - a custom command such as Sidekiq, DB producer, etc.
+  services:
+    - wtf_bot: default
+  # If true, use Rails API mode, which does not provide views and is used e.g.
+  # for SPA's or only talking to other services.
+  api: true
+  # Use ActiveRecord to talk to a database.
+  use_database: true
+  # Use mysql or postgres as the database. Flipp primarily supports MySQL
+  # unless there is a pressing need.
+  database: mysql
+  # Create controllers. You can set this to false if you're creating a Kafka-only
+  # service.
+  use_controllers: true
+  # Create views. This should always be true if the api setting is false.
+  use_views: false
+  # Create models and controller code to enable Flipp's Single Sign On gateway
+  # so that only people signed in can access it. Requires both views and
+  # a database.
+  use_sso: false
+  # Create Kafka configuration to be able to produce or consume.
+  use_kafka: false
+  # Use Kafka consumers as the primary command. This will generate consumer code
+  # and config as well as switching the command from `rails server` to `rails deimos:start`.
+  use_kafka_consumers: false
+  # Create webpack config files for the frontend.
+  use_webpack: false
+  # Slack channel to use for Datadog monitors.
+  slack_channel: 'my-team-channel'
+  # OpsGenie team to use for Datadog monitors.
+  ops_genie_team: 'wtf_bot'
+

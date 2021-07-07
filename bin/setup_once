@@ -1,0 +1,38 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require 'pathname'
+require 'fileutils'
+require 'English'
+
+include FileUtils # rubocop:disable Style/MixinUsage
+
+# path to your application root.
+APP_ROOT = Pathname.new(File.expand_path('..', __dir__))
+
+# @param args [Array<String>]
+def system!(*args)
+  command = "#{ENV['SHELL']} -c -l '#{args.join(' ')}'"
+  puts "> #{command}"
+  return if system(command, out: STDOUT)
+
+  puts("\n== Command #{command} failed ==")
+  abort
+end
+
+begin
+  chdir APP_ROOT do
+    # This script is a starting point to setup your application.
+    # Add necessary setup steps to this file.
+
+    puts "\n==Fixing up the code with Rubocop =="
+    system! 'bundle exec rubocop -A --display-only-fail-level-offenses --fail-level C'
+
+    puts "\n==Editing credentials. You need to edit the generated credentials down to less than 100 characters to add it to Prime Radiant as an environment variable."
+    system! 'EDITOR="nano" bundle exec rails credentials:edit'
+  end
+rescue => e
+  puts "#{e.class.name} #{e.message} #{e.backtrace.join("\n")}"
+  puts "\n\nInitial setup failed. Please fix the local problem and then rerun bin/setup_once."
+  exit(1)
+end
