@@ -1,9 +1,9 @@
-class WtfDictionary < ApplicationRecord
+class WtfEntry < ApplicationRecord
 end
 
 # == Schema Information
 #
-# Table name: wtf_dictionaries
+# Table name: wtf_entries
 #
 #  id          :bigint           not null, primary key
 #  author      :string(255)

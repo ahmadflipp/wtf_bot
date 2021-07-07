@@ -2,6 +2,9 @@
 
 Rails.application.routes.draw do
 
-  get 'ping', to: 'ping#index'
-  root 'ping#index'
+  namespace :api do
+    namespace :v1 do
+      resources :entries, only: [:index, :create, :show, :delete]
+    end
+  end
 end
