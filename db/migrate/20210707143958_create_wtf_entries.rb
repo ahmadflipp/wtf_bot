@@ -7,5 +7,6 @@ class CreateWtfEntries < ActiveRecord::Migration[6.1]
 
       t.timestamps
     end
+    add_index :wtf_entries, :word, unique: true
   end
 end
