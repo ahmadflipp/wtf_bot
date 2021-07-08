@@ -7,7 +7,7 @@ class Api::V1::EntriesController < ApplicationController
     if entry
       render json: entry, status: :ok
     else
-      render json: {error: 'Not found'}
+      render json: {error: 'Not found'}.to_json, :status => 404
     end
   end
 
@@ -21,7 +21,7 @@ class Api::V1::EntriesController < ApplicationController
     if entry.save
       render json: entry, status: :ok
     else
-      render json: {error: 'Error creating entry'}
+      render json: {error: 'Error creating entry'}.to_json, :status => 500
     end
   end
 
@@ -30,7 +30,7 @@ class Api::V1::EntriesController < ApplicationController
     if entry.update(dictionary_params)
       render json: entry, status: :ok
     else
-      render json: {error: 'Error updating entry'}
+      render json: {error: 'Error updating entry'}.to_json, :status => 500
     end
   end
 
@@ -43,12 +43,12 @@ class Api::V1::EntriesController < ApplicationController
     if entry
       render json: entry, status: :ok
     else
-      render json: {error: 'Not found'}
+      render json: {error: 'Not found'}.to_json, :status => 404
     end
   end
 
   private
     def dictionary_params
-      params.require(:wtf_entry).permit([:word, :author, :description])
+      params.require(:entry).permit([:word, :author, :description])
     end
 end
